@@ -1,0 +1,19 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+struct Book
+{
+    char name[10];
+    int price;
+
+};
+int main()
+{
+    struct Book b={"C++入门",10};
+    struct Book* p=&b;
+    strcpy(p->name,"自动控制");//更改字符串需要用到strcpy，还需要加入头文件string.h
+    p->price=20;
+    printf("书名:%s\n 价格：%d\n",p->name,p->price);
+    system("pause");
+    return 0;
+}
