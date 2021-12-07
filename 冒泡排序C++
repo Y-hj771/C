@@ -1,0 +1,35 @@
+#include <iostream>
+#include <stdlib.h>
+#define M 9
+using namespace std;
+int main()
+{
+    int arr[M]={1,5,3,7,6,8,2,9,4};
+    int i;
+    cout<<"数组为：";
+    for(i=0;i<M;i++)
+    {
+        cout<<arr[i]<<" ";//循环遍历输出数组中的元素
+    }
+    cout<<endl;
+    int j;int temp;
+    for(i=0;i<M-1;i++)//循环M-1轮
+        {   
+            for(j=0;j<M-1-i;j++)//每轮比较M-1-i次
+            {
+                if(arr[j+1]>arr[j])//相邻两两比较，大的存放到前者的存储空间。
+                {
+                    temp=arr[j];
+                    arr[j]=arr[j+1];
+                    arr[j+1]=temp;
+                }
+            }
+        }
+    cout<<"从大到小：";
+    for(i=0;i<M;i++)
+    {
+        cout<<arr[i]<<" ";
+    }    
+    system("pause");
+    return 0;
+}
