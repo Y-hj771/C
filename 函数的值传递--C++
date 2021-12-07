@@ -1,0 +1,37 @@
+#include <iostream>
+#include <stdlib.h>
+using namespace std;
+/*无参无返
+void add()
+{
+    cout<<"没什么好说的："<<endl;
+}*/
+/*无参有返
+int add()
+{
+    cout<<"两数之和为："<<endl;
+    return 100;
+}*/
+/*有参无返
+void add(int x)
+{
+    cout<<"数字为："<<x<<endl;
+}*/
+//有参有返
+int add(int x)
+{
+    cout<<"传入的数字为："<<x<<endl;
+    return 100;
+}
+
+
+
+int  main()
+{
+    int a=add(10);
+    cout<<a<<endl;
+
+
+    system("pause");
+    return 0;
+}
