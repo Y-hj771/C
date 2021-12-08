@@ -1,0 +1,29 @@
+#include <iostream>
+#include <stdlib.h>
+using namespace std;
+ struct Student{
+    string name;
+    int age;
+    int score;
+ };
+int main()
+{
+    Student Stuarr[3]=
+        {
+            {"小A",10,100},
+            {"小B",11,90},
+            {"小C",12,80}
+        };
+    Student* p=Stuarr;   
+    (*p).age=20;
+    (*(p+2)).name="小H"; 
+    //Stuarr[2].name="小G";可以修改参数
+    for(int i=0;i<3;i++)
+        {
+            cout<<"姓名："<<Stuarr[i].name
+            <<" 年龄:"<<Stuarr[i].age
+            <<" 分数:"<<Stuarr[i].score<<endl;
+        }
+    system("pause");
+    return 0;
+}
