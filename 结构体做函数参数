@@ -1,0 +1,32 @@
+#include <iostream>
+#include <stdlib.h>
+#include <string.h>
+using namespace std;
+struct student
+{
+    string name;
+    int age;
+    int score;
+};
+void printfStu(struct student* s)
+{
+    s->name="小红";
+    cout<<"名字为："<<s->name<<endl;
+}
+/*void printfStu(struct student s)
+{
+    s.name="小红";
+    cout<<"名字为："<<s.name<<endl;
+}*/
+int main()
+{
+    struct student s;
+    s.name="小明";
+    s.age=19;
+    s.score=100;
+    //printfStu(s);
+    printfStu(&s);
+    cout<<"原来的名字："<<s.name<<endl;
+    system("pause");
+    return 0;
+}
