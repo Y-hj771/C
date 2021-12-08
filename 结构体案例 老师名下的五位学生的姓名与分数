@@ -1,0 +1,59 @@
+#include <iostream>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
+using namespace std;
+struct student
+{
+    string sname;
+    int sscore;
+};
+struct teacher
+{
+    string tname;
+    int tage;
+    struct student sarr[5];
+};
+void printfT(teacher tarr[],int len)
+    {   
+        string nameSeed="ABCDE";
+        for(int i=0;i<len;i++)
+            {
+                tarr[i].tname="t_";
+                tarr[i].tname+=nameSeed[i];
+                for(int j=0;j<5;j++)
+                {
+                    tarr[i].sarr[j].sname="s_";
+                    tarr[i].sarr[j].sname+=nameSeed[j];
+                }
+            }
+    }
+ void print(teacher tarr[],int len)
+ {
+     for(int i=0;i<len;i++)
+    {
+        cout<<"老师的名字："<<tarr[i].tname<<" 老师的年龄："<<endl;
+        for(int j=0;j<5;j++)
+        {
+            int random=rand()%50+40;//随机数
+            tarr[i].sarr[j].sscore=random;//学生的分数为学生数
+            cout<<"\t学生的名字:"<<tarr[i].sarr[j].sname<<" 学生的分数："<<tarr[i].sarr[j].sscore<<endl;
+        }
+    }   
+ }
+
+int main()
+{
+    srand ((unsigned int)time(NULL));//让每次的随机数都不一样
+    teacher tarr[3];
+    /*{
+        {"李老师",30},
+        {"王老师",34},
+        {"周老师",40}
+    };*/
+    int len=sizeof(tarr)/sizeof(tarr[0]);
+    printfT(tarr,len);
+    print(tarr,len);
+    system("pause");
+    return 0;
+}
