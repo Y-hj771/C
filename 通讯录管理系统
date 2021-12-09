@@ -1,0 +1,264 @@
+#include <iostream>
+#include <stdlib.h>
+#include <string.h>
+#define M 1000
+using namespace std;
+struct Person //人员信息
+{
+    string name;    //姓名
+    int sex;        //性别 1男 0女
+    string number;  //手机号码
+    string address; //地址
+};
+struct AddressBooks //通讯录
+{
+    struct Person arr[M]; //最大人数
+    int p_size;           //当前存的人数
+};
+void showMenu() //封装菜单函数
+{
+    cout << "**************************" << endl;
+    cout << "*****  1,添加联系人  *****" << endl;
+    cout << "*****  2,显示联系人  *****" << endl;
+    cout << "*****  3,删除联系人  *****" << endl;
+    cout << "*****  4,查找联系人  *****" << endl;
+    cout << "*****  5,修改联系人  *****" << endl;
+    cout << "*****  6,清空联系人  *****" << endl;
+    cout << "*****  0,退出系统    *****" << endl;
+    cout << "**************************" << endl;
+}
+void add(AddressBooks *txl) //添加人员函数的封装
+{
+    if (txl->p_size == M) //判断当前通讯录人数是否已满
+    {
+        cout << "人数已满，无法添加" << endl;
+        return;
+    }
+    else
+    {
+        //输入姓名
+        cout << "请输入姓名:" << endl;
+        string name;
+        cin >> name;
+        txl->arr[txl->p_size].name = name;
+        //输入性别
+        cout << "性别:" << endl;
+        cout << "1--男" << endl;
+        cout << "2--女" << endl;
+        int  sex = 0;
+        while (1) //判断是否为男或者女
+        {
+            cin >> sex;
+            if (sex == 1 || sex == 2)
+            {
+                txl->arr[txl->p_size].sex = sex;
+                break; //退出循环
+            }
+            else
+            {
+                cout << "输入错误，请重新输入";
+            }
+        }
+        //输入手机号
+        cout << "输入手机号:" << endl;
+        string number;
+        cin >> number;
+        txl->arr[txl->p_size].number = number;
+        //输入地址
+        cout << "输入地址:" << endl;
+        string address;
+        cin >> address;
+        txl->arr[txl->p_size].address = address;
+        //通讯录人数加1
+        txl->p_size++;
+        //提示添加成功
+        cout << "添加成功" << endl;
+        //按任意键继续
+        system("pause");
+        //清屏操作
+        system("cls");
+    }
+}
+void showPerson(AddressBooks* txl)//显示联系人函数
+{
+    if(txl->p_size==0)//判断是否没有人
+    {
+        cout<<"没有联系人"<<endl;
+
+    }
+    else
+    {
+        for(int i=0;i<txl->p_size;i++)
+        {
+            cout<<"姓名:"<<txl->arr[i].name<<"\t"
+            <<"性别:"<<txl->arr[i].sex<<"\t"
+            <<"手机号:"<<txl->arr[i].number<<"\t"
+            <<"地址:"<<txl->arr[i].address<<endl;
+        }
+    }
+    system("pause");//按任意键继续
+    system("cls");//清屏操作
+}
+int isExist(AddressBooks* txl,string name)//判断是否存在这样一个联系人，存在返回所在数组的下标，不在返回-1
+{
+    for(int i=0;i<txl->p_size;i++)
+        {
+            if(txl->arr[i].name==name)
+                {
+                    return i;
+                }
+        }
+        return -1;
+}
+void delect(AddressBooks* txl)//删除联系人函数
+{
+    cout<<"输入你要删除的联系人的名字"<<endl;
+    string name;
+    cin>>name;
+    int set=isExist(txl,name);//把是否存在联系人函数的返回值赋值给变量set
+    if(set==-1)
+    {
+        cout<<"没有这个人"<<endl;
+    }
+    else 
+    {
+        for(int i=set;i<txl->p_size;i++)//循环遍历将要删除联系人之后的值依次往前赋值
+        {
+            txl->arr[i]=txl->arr[i+1];
+        }
+        txl->p_size--;//删除后的人员人数自减
+    }
+    system("pause");
+    system("cls");
+}
+void seek(AddressBooks* txl)//查找联系人函数
+{
+    cout<<"请输入你要查找的姓名"<<endl;
+    string name;
+    cin>>name;
+    int set=isExist(txl,name);//判断是都有这个人
+    if(set!=-1)
+    {
+        cout<<"姓名:"<<txl->arr[set].name<<"\t"
+        <<"性别:"<<txl->arr[set].sex<<"\t"
+        <<"手机号:"<<txl->arr[set].number<<"\t"
+        <<"地址:"<<txl->arr[set].address<<endl;
+    }
+    else
+    {
+        cout<<"查无此人"<<endl;
+    }
+    system("pause");
+    system("cls");
+}
+void modify(AddressBooks* txl)//修改函数
+{
+    cout<<"请输入需要修改的姓名"<<endl;
+    string name;
+    cin>>name;
+    int set=isExist(txl,name);
+    if(set!=-1)
+    {
+        string name;
+        cout<<"修改后的姓名为:"<<endl;//修改姓名
+        cin>>name;
+        txl->arr[set].name=name;
+
+        int sex=0;                   //修改性别
+        cout<<"性别:"<<endl;
+        cout<<"1---男"<<endl;
+        cout<<"2---女"<<endl;
+        cin>>sex;
+        while(1)
+        {
+            if(sex==1||sex==2)
+            {
+                txl->arr[set].sex=sex;
+                break;
+            }
+            else
+            {
+                cout<<"输入有误，请重新输入"<<endl;
+            }
+        }
+        
+        string number;               //修改手机号
+        cout<<"手机号为:"<<endl;
+        cin>>number;
+        txl->arr[set].number=number;
+
+        string address;              //修改地址
+        cout<<"地址为:"<<endl;
+        cin>>address;
+        txl->arr[set].address=address;
+
+    }
+    else
+    {
+        cout<<"没有这个人"<<endl;
+    }
+    system("pause");
+    system("cls");
+}
+void clean(AddressBooks* txl)   //清空函数
+{
+    txl->p_size=0;              //逻辑上数组为空即没有人
+    cout<<"通讯录已经清空"<<endl;
+    system("pause");
+    system("cls");
+}
+int main()
+{
+    AddressBooks txl; //创建通讯录结构体变量
+    txl.p_size = 0;   //初始化通讯录当前人数
+    while (true)
+    {
+        showMenu(); //菜单调用
+        int select = 0;
+        cin >> select;
+        switch (select)
+        {
+        case 1:
+            add(&txl); //添加联系人      地址传递可以改变实参值
+            break;
+        case 2:
+            showPerson(&txl);//显示联系人
+            break;
+        case 3:
+            delect(&txl);//删除联系人
+            break;
+        /*{
+            cout<<"请输入要删除的联系人"<<endl;
+            string name;
+            cin>>name;
+            if(isExist(&txl,name)==-1)
+            {
+                cout<<"没有找到"<<endl;
+            }
+            else
+            {
+                cout<<"找到了"<<endl;
+
+            }
+        }*/
+            
+        case 4:
+            seek(&txl);//查找联系人
+            break;
+        case 5:
+            modify(&txl);//修改联系人
+            break;
+         case 6:
+            clean(&txl);//清空通讯录
+            break;   
+        case 0:
+            cout << "退出" << endl;
+            system("pause");
+            return 0;
+        default:
+            break;
+        }
+    }
+    system("pause");
+    return 0;
+}
