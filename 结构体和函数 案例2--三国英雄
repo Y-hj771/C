@@ -1,0 +1,53 @@
+#include <stdlib.h>
+#include <iostream>
+using namespace std;
+struct Hero  //定义英雄人物结构体
+{
+    string name;
+    int age;
+    string sex;
+};
+void Bubble(struct Hero arr[],int len)  //定义按年龄小到大的冒泡排序的函数
+{
+    for(int i=0;i<len-1;i++)
+        {
+            for(int j=0;j<len-1-i;j++)
+            {
+                if(arr[j].age>arr[j+1].age)
+                {
+                    struct Hero temp=arr[j];
+                    arr[j]=arr[j+1];
+                    arr[j+1]=temp;
+                }
+            }
+        }
+}
+void PrintfIofo(struct Hero arr[],int len)  //定义一个输出函数
+{   
+    for(int i=0;i<len;i++)
+    {
+        cout<<"姓名："<<arr[i].name<<" 年龄："<<arr[i].age
+            <<" 性别："<<arr[i].sex<<endl;
+    }
+}
+int main()
+{   
+    struct Hero arr[5]=   //给数组赋值
+    {
+        {"刘备",23,"男"},
+        {"关羽",20,"男"},
+        {"张飞",21,"男"},
+        {"赵云",22,"男"},
+        {"貂蝉",19,"女"},
+    };
+    int len=sizeof(arr)/sizeof(arr[0]);
+    for(int i=0;i<len;i++)   //开始的顺序输出
+        {
+            cout<<"姓名："<<arr[i].name<<" 年龄："<<arr[i].age
+            <<" 性别："<<arr[i].sex<<endl;
+        }
+    Bubble(arr,len);  //调用冒泡函数
+    PrintfIofo(arr,len);  //调用输出函数
+    system("pause");
+    return 0;
+}
