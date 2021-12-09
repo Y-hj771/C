@@ -1,0 +1,54 @@
+#include <iostream>
+#include <stdlib.h>
+using namespace std;
+int main()
+{
+    int num=100;
+    int a;
+    int b;
+    int c;
+    /*for(num=100;num<1000;num++)
+    {
+      
+        a=num%10;//个位
+        b=num/10%10;//十位
+        c=num/100;//百位
+        if(a*a*a+b*b*b+c*c*c == num )
+            {
+                printf("%d\n",num);
+            }
+        
+    }*/
+    while(num<1000)
+    {
+        a=num%10;//个位
+        b=num/10%10;//十位
+        c=num/100;//百位 
+        if(num == a*a*a+b*b*b+c*c*c)
+            {
+                printf("%d\n",num);
+            }
+        num ++;
+   } 
+    
+    
+    
+    /*do{ 
+        
+        int a;
+        int b;
+        int c;
+        a=num%10;//个位
+        b=num/10%10;//十位
+        c=num/100;//百位
+        if(a*a*a+b*b*b+c*c*c==num)
+        {
+            cout<<num<<endl;    
+        }
+        num++;
+    }while(num<1000);*/
+
+
+    system("pause");
+    return 0;
+}
