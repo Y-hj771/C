@@ -1,0 +1,27 @@
+#include <iostream>
+#include <stdlib.h>
+#include <time.h>
+using namespace std;
+int main()
+{
+    srand((unsigned int)time(NULL));
+    int a = rand() % 100 + 1; //随机数1-100；
+    cout<<a<<endl;
+    int b = 0;
+    while (1)
+    {
+        cin >> b; 
+        if (b > a)
+        {
+            cout << "输入的数字过大" << endl;continue;
+        } 
+        else if (b < a)
+        {
+            cout << "输入的数字过小" << endl;continue;
+        }
+        else
+            cout << "输入正确" << endl;break;
+    }
+    system("pause");
+    return 0;
+}
