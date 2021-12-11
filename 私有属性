@@ -1,0 +1,45 @@
+#include <iostream>
+#include <stdlib.h>
+using namespace std;
+class student
+{
+public:
+    //可读可写
+    void setName(string name1)//可写
+    {
+        name=name1;
+    }
+    string getName()//可读
+    {
+        return name;
+    }
+    //只读
+    int getAge()
+    {
+        age=20;
+        return age;
+    }
+    //只写
+    void setLover(string lover1)
+    {
+        lover=lover1;
+    }
+private://私有权限
+    string name;
+    int age;
+    string lover;
+};
+
+
+
+int main()
+{
+    student s;
+    s.setName("小张");
+    cout<<"姓名是:"<<s.getName()<<endl;
+    cout<<"年龄是:"<<s.getAge()<<endl;
+    s.setLover("小姐");
+    //cout<<"你的爱人是:"<<s.setLover<<endl;
+    system("pause");
+    return 0;
+}
