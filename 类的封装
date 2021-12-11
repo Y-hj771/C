@@ -1,0 +1,32 @@
+#include <iostream>
+#include <stdlib.h>
+using namespace std;
+class student{
+public:                                  //公共权限 类中的属性和行为 我们统一称为 成员                           
+//属性 成员属性 成员变量
+           //属性                              //行为 成员函数 成员方法
+        string s_name;                   
+        int s_id;
+           //行为
+        void setname(string name)
+        {
+            s_name=name;
+        }
+        void setid(int id)
+        {
+            s_id=id;
+        }
+        void show()
+        {
+            cout<<"学生姓名:"<<s_name<<"  学生学号:"<<s_id<<endl;
+        }
+};
+int main()
+{
+    student stu;//创建一个具体学生
+    stu.setname("小明");//给学生对象属性赋初值
+    stu.setid(50);
+    stu.show();
+    system("pause");//显示学生信息
+    return 0;
+}
