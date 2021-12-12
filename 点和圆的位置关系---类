@@ -1,0 +1,100 @@
+#include <iostream>
+#include <stdlib.h>
+using namespace std;
+//点的类
+class Point
+{
+public:
+    //设置X的坐标
+    void setX(int x)
+    {
+        m_X=x;
+    }
+    //获取X的坐标
+    int getX()
+    {
+        return m_X;
+    }
+    //设置Y的坐标
+    void setY(int y)
+    {
+        m_Y=y;
+    }
+    //获取Y的坐标
+    int getY()
+    {
+        return m_Y;
+    }
+   
+private:
+    int m_X;//圆心的横坐标
+    int m_Y;//圆心的纵坐标
+};
+//圆的类
+class Circle
+{
+public:
+    //设置圆的半径
+    void setR(int r)
+    {
+        m_R=r;
+    } 
+    //获取半径
+    int getR()
+    {
+        return m_R;
+    }
+    //设置圆心
+    void setCenter(Point center)
+    {
+        m_Center=center;
+    }
+    //获取圆心
+    Point getCenter()
+    {
+        return m_Center;
+    }
+private:
+    int m_R;//圆的半径
+    Point m_Center;//点
+};
+//判断点和圆心的位置关系
+void isinCircle(Circle c,Point p)
+{
+    //计算圆心和点之间的距离平方
+    int sum1=(c.getCenter().getX()-p.getX())*(c.getCenter().getX()-p.getX())+
+    (c.getCenter().getY()-p.getY())*(c.getCenter().getY()-p.getY());
+    //计算半径的平方
+    int sum2= c.getR()* c.getR();
+    //判断两者的大小
+    if(sum1==sum2)
+    {
+        cout<<"点在圆上"<<endl;
+    }
+    else if(sum1<sum2)
+    {
+        cout<<"点在圆内"<<endl;
+    }
+    else
+    {
+        cout<<"点在圆外"<<endl;
+    }
+}
+int main()
+{
+    //创建圆
+    Circle c;
+    c.setR(10);
+    Point center;
+    center.setX(10);
+    center.setY(0);
+    c.setCenter(center);
+    //创建圆
+    Point p;
+    p.setX(10);
+    p.setY(1);
+    //判断两者的距离
+    isinCircle(c,p);
+    system("pause");
+    return 0;
+}
