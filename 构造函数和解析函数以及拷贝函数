@@ -1,0 +1,37 @@
+#include <iostream>
+#include <stdlib.h>
+using namespace std;
+class Person
+{
+public:
+    Person()
+    {
+        cout<<"调用无参构造函数"<<endl;
+    }
+    Person(int a)
+    {
+        age=a;
+        cout<<"调用有参构造函数"<<endl;
+    }
+    Person(const Person &p)
+    {
+        age=p.age;
+        cout<<"调用拷贝构造函数"<<endl;
+    }
+    ~Person()
+    {
+        cout<<"调用解析构造函数"<<endl;
+    }
+    int age;
+};
+
+
+
+int main()
+{
+    Person p1;
+    Person p2(20);
+    Person p3(p2);
+    system("pause");
+    return 0;
+}
