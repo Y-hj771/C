@@ -1,0 +1,27 @@
+#include <iostream>
+#include <stdlib.h>
+using namespace std;
+class Person
+{
+public:
+    static void func()
+    {
+        cout<<"可以访问"<<n<<endl;
+        // m=100;错误，m是非静态成员变量，无法访问
+        // n=200;正确，n是静态成员变量，可以访问
+    }
+    int m;
+    static int n;//静态成员变量
+};
+int Person::n=10;
+void test01()
+{
+    Person p;
+    p.func();
+}
+int main()
+{
+    test01();
+    system("pause");
+    return 0;
+}
