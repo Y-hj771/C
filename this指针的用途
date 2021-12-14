@@ -1,0 +1,36 @@
+#include <iostream>
+#include <stdlib.h>
+using namespace std;
+class Person
+{
+public:
+    Person(int age)
+    {
+        this->age=age;
+    }
+    // void AddAge(Person &p)
+    // {
+    //     this->age +=p.age;
+    // }
+    Person& AddAge(Person &p)
+    {
+        this->age +=p.age;
+        return *this;
+    }
+    int age;
+};
+void test01()
+{
+    Person p(10);
+    Person p1(20);
+    // p1.AddAge(p);
+    //链式编程思想
+    p1.AddAge(p).AddAge(p).AddAge(p);
+    cout<<"调用出来的年龄是:"<<p1.age<<endl;
+}
+int main()
+{
+    test01();
+    system("pause");
+    return 0;
+}
